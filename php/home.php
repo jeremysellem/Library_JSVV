@@ -1,3 +1,4 @@
+<!--
 <?php
 	$servname = 'localhost';
 	$dbname = 'online_library';
@@ -15,6 +16,7 @@
 		echo "Error: " . $e->getMessage();
 	}
 ?>
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,54 +24,68 @@
 		<meta charset="UTF-8">
 		<title>Home</title>
 		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+		<script>
+			function resizeIframe(obj) {
+				obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+			}
+		</script>
 	</head>
 	<body>
-		<div id="Logo">
-			<a href="home.php">
-				Image Logo
+		<header>
+			<nav>
+				<ul>
+					<li>
+				        <a href="../html/main.html" target="Main" class="logo">
+				        	<img src="../images/website_logo.png" width="60" height="60">
+				        	<h1>J&V Library</h1>
+				        </a>
+			    	</li>
+			    	<li>
+						<a href="../html/main.html" target="Main">
+							<h1>Home</h1>
+						</a>
+					</li>
+			    	<li>
+						<a href="products.php" target="Main">
+							<h1>Products</h1>
+						</a>
+					</li>
+					<li>
+						<a href="books.php" target="Main">
+							<h1>Books</h1>
+						</a>
+					</li>
+					<li>
+						<a href="buy.php" target="Main">
+							<h1>Buy</h1>
+						</a>
+					</li>
+					<li>
+						<a href="update.php" target="Main">
+							<h1>Update</h1>
+						</a>
+					</li>
+			    </ul>
+	    	</nav>
+	    </header>
+		<iframe style="width: 100%;" name="Main" src="../html/main.html" frameBorder="0" onload="resizeIframe(this)" scrolling="no" ></iframe>
+		<footer>
+			<a href="about_us.php" target="Main">
+				<h2>About Us</h2>
 			</a>
-			<li>
-				Cette div contient le logo persistant qui en cliquant revient vers la page principale.
-			</li>
-		</div>
-		<div id="Menu">
-			<a href="products.php">
-				Products
+
+			<a href="contact.php" target="Main">
+				<h2>Contact</h2>
 			</a>
-			<a href="books.php">
-				Books
+			<a href="legal.php" target="Main">
+				<h2>Legal</h2>
 			</a>
-			<a href="purchase.php">
-				Purchase
-			</a>
-			<a href="update.php">
-				Update
-			</a>
-			<li>
-				Cette div contient les liens vers les autres parties du site.
-			</li>
-		</div>
-		<div id="Presentation">
-			<li>
-				Cette div contient des images, des textes, des produits mis en avant, ou encore des promotions.
-			</li>
-		</div>
-		<div id="Footer">
-			<a href="about_us.php">
-				About Us
-			</a>
-			<a href="contact.php">
-				Contact
-			</a>
-			<a href="legal.php">
-				Legal
-			</a>
-			<a href="home.php">
-				Image Logo
-			</a>
-			<li>
-				Cette div contient les informations pratiques et les liens vers d'autres pages moins importantes.
-			</li>
-		</div>
+	        <a href="../html/main.html" target="Main" class="logo">
+	        	<img src="../images/website_logo.png" width="60" height="60">
+	        	<h2>J&V Library</h2>
+	        </a>
+	    </footer>
 	</body>
 </html>

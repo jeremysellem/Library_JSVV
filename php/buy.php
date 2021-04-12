@@ -5,7 +5,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Purchase</title>
+		<title>Buy</title>
 	</head>
 	<body>
 		<div>
