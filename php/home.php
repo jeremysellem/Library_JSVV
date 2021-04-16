@@ -27,11 +27,6 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type="text/javascript">
-			function resizeIframe(obj) {
-				obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
-			}
-		</script>
 	</head>
 	<body>
 		<header>
@@ -71,7 +66,7 @@
 			    </ul>
 	    	</nav>
 	    </header>
-		<iframe style="width: 100%;" name="Main" src="../html/main.html" frameBorder="0" onload="resizeIframe(this)" scrolling="no" ></iframe>
+		<iframe style="width: 100%;" id="Main" name="Main" src="../html/main.html" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
 		<footer>
 			<a href="about_us.php" target="Main">
 				<h2>About Us</h2>
