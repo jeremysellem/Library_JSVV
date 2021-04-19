@@ -1,8 +1,8 @@
 <?php
 
-	$servername = "localhost";
+	$servername = "35.241.185.169";
 	$user = "root";
-	$password = "root";
+	$password = "J&VLibrary";
 	$dbname = "Library_JSVV";
 
 
