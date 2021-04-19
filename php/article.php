@@ -4,21 +4,21 @@
 	<head>
 		<title>Article</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="article.css">
+		<link rel="stylesheet" href="../css/article.css" />
 	</head>
+
+	<style type="">
+	
+	</style>
 
 	<body>
 
-		<!-- Header -->
-		<?php include "../head/head.php" ?>
+		<div id='prod_banner'>
+		</div>
 
-		<!-- Import classes -->
-		<?php
-			include "../connexion/classes.php";
-			session_start();
-		?>
+			<div id="prod_wrap"> 
+			<div id="prod_columns" class="prod_col"> 
 
-		<!-- Checks if variable id is set in the url -->
 		<?php 
 			if (isset($_GET["id"])) {
 				$id = $_GET["id"];
@@ -31,16 +31,19 @@
 
 		<?php
 
-			include "../connexion_bdd.php";
+			include "connexion_bdd.php";
+
+
 
 			try {
-				$sql = "SELECT * FROM Livres WHERE Livre_ID = ".$id;
+				$sql = "SELECT * FROM Library_JSVV.Livres WHERE Livre_ID = ".$id;
 				$result = $conn->query($sql);
 				$result = $result->fetch();
 
 				if ($result["Livre_ID"]) {
 
 					$titre = $result["Titre"];
+					$auteur = $result["Auteur"];
 					$description = $result["Resume"];
 					$prix = $result["Prix"];
 					$image = $result["Lien_image"];
@@ -52,17 +55,18 @@
 				}
 			}
 			catch (Exception $e) {
-				echo "Page introuvable";
-				exit();
+				echo "Page introuvable" .$e. " ";
+				exit(); 
 			}
 
 			$conn = null;
 
 		?>
 
-		<div class="title">
-			<h2><?php echo $type; ?></h2>
-		</div>
+		<!-- <div class="title"> -->
+			<!-- <h2><?php echo $type; ?></h2> -->
+		<!-- </div> -->
+
 
 		<div class="container-bigbloc">
 			<div class="container-bloc">
@@ -72,49 +76,30 @@
 				</div>
 
 				<div class="product-bloc" id="product-info">
-					<h2><?php echo $name; ?></h2>
-					<p id="description"> echo
+					<h1><?php echo $titre; ?></h1>
+					<h2><?php echo $auteur; ?></h2>
+					<p id="description"> 
 						<?php
 							echo $description ;
 						?> 
 					</p>
-					<h4><?php echo $price; ?> EUR</h4>
+					<h3><?php echo $prix; ?> EUR</h3>
 
-					<form method="post">
+					<!-- <form method="post">
 						Quantité : 
 						<input type="number" name="quantity" value="1" min="1">
 						<input type="submit" name="addToCart" value="Ajouter au panier">
-					</form>
+					</form> -->
 
 				</div>
 				
 			</div>
 		</div>
 
-<!-- 		<?php
-			// add to cart only if logged in
-			if (isset($_POST["addToCart"])) {
-				if (isset($_SESSION['person'])) {
-					$_SESSION['person']->addToCart($_GET["id"], $_POST["quantity"]);
-					//echo $_SESSION['person']->toString();
-				}
-				else {
-					if (isset($_SESSION['visitor'])) {
-						$_SESSION['visitor']->addToCart($_GET["id"], $_POST["quantity"]);
-						//echo $_SESSION['visitor']->toString();
-					}
-					else {
-						$_SESSION['visitor'] = new User("", "", "", "");
-						$_SESSION['visitor']->addToCart($_GET["id"], $_POST["quantity"]);
-						//echo $_SESSION['visitor']->toString();
-					}
-				}
-			}
-		?>
- -->
+		<!-- Ajouter proposition de livres de la meme categories en bas -->
 
-		<!-- Footer -->
-		<?php include "../footer/footer.php" ?>
+	
+
 
 	</body>
 </html>

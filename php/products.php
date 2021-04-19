@@ -11,6 +11,8 @@
 
 				<div id="prod_wrap"> 
 				<div id="prod_columns" class="prod_col"> 
+
+	
 	
 				<?php
 					include "connexion_bdd.php";
@@ -23,15 +25,12 @@
 						if ($num_rows > 0) {
 							
 							foreach ($result as $row) {
-	
-		
-
 								echo '<figure>
 										<img src='.$row["Lien_image"].'>
 										<figcaption >'.$row["Titre"].'</figcaption>
 										<figcaption >'.$row["Auteur"].'</figcaption>
 										<span class="price">'.$row["Prix"].' EUR</span>
-										<a class="prod_button" href="#"> Description</a>
+										<a class="prod_button" href="article.php?id='.$row["Livre_ID"].'"> Description</a>
 										</figure>';
 			
 							}
