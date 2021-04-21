@@ -1,9 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 9f240be8817ffdb44c75d097e3f38ce7d1d78ec2
+
 	$servername = "35.241.185.169";
 	$user = "root";
 	$password = "J&VLibrary";
