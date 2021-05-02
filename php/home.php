@@ -1,22 +1,46 @@
-<!--
 <?php
-	$servname = 'localhost';
-	$dbname = 'online_library';
-	$username = 'root';
-	$password = 'root';
-	try {
-		$conn = new PDO("mysql:host=$servname;dbname=$dbname", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "INSERT INTO Clients(Nom,Prenom,Adresse,Ville,Codepostal,Pays,Mail) VALUES('Emmanuel','Cruise','Avenue des Champs Elysées','Paris',75008,'France','emmanuel.cruise90@gmail.com')";
-		$conn->exec($sql);
-		echo 'Entrée ajoutée dans la table';
+	session_start();
+
+	// If we just filled the log in form
+	if(isset($_SESSION["LOGGING_IN"]) && $_SESSION["LOGGING_IN"] == true) {
+
+		try {
+
+			// Initiate connection to DB
+			include "connexion_bdd.php";
+
+			// Prepare statement to verify credentials
+			$sql = "SELECT CUS_ID, CUS_FIRST_NAME FROM USERS WHERE CUS_EMAIL=\"" . $_SESSION['email_address'] . "\" AND CUS_PW=\"" . $_SESSION['password'] . "\";";
+			
+			// Execute query
+			$result = $conn->query($sql);
+
+			// Get results
+			$user = $result->fetch();
+
+			// Successful credentials ?
+			if($user["CUS_ID"] > 0) {
+				// Yes then store the CUS_ID in the session
+				$_SESSION["CUSTOMER_ID"] = $user["CUS_ID"];
+				$_SESSION["CUSTOMER_FIRST_NAME"] = $user["CUS_FIRST_NAME"];
+				echo "You are now connected. Please move on to the catalog to make your purchase.";
+			}
+			else {
+				// No then try again
+				echo "Wrong email/password combination, please try again.";
+			}
+
+		}
+		catch (Exception $e) {
+			echo $e;
+		}
+
+		$conn = null;
 	}
 
-	catch(Exception $e){
-		echo "Error: " . $e->getMessage();
-	}
+	$_SESSION["LOGGING_IN"] = false;
+
 ?>
--->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +53,9 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<!-- Top of the page -->
 		<header>
+			<!-- Navigation bar: links to relevant sections -->
 			<nav>
 				<ul class="navbar-nav">
 					<li class="nav-item">
@@ -39,7 +65,7 @@
 				        </a>
 			    	</li>
 			    	<li class="nav-item active" id="home">
-						<a href="../html/main.html" target="Main">
+						<a href="main.php" target="Main">
 							<h1>Home</h1>
 						</a>
 					</li>
@@ -54,19 +80,26 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="buy.php" target="Main">
-							<h1>Buy</h1>
+						<a href="update.php" target="Main">
+							<h1>Update</h1>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="update.php" target="Main">
-							<h1>Update</h1>
+						<a href="account.php" target="Main" class="logo">
+							<img src="../images/user.png" width="40" height="40">
+							<?php if(isset($_SESSION["CUSTOMER_ID"]) && $_SESSION["CUSTOMER_ID"] > 0) : ?>
+								<h1><?php echo $_SESSION["CUSTOMER_FIRST_NAME"] ?></h1>
+							<?php  else: ?>
+								<h1>My Account</h1>
+							<?php endif?>
 						</a>
 					</li>
 			    </ul>
 	    	</nav>
 	    </header>
-		<iframe style="width: 100%;" id="Main" name="Main" src="../html/main.html" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
+	    <!-- Main content -->
+		<iframe style="width: 100%;" id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
+		<!-- Footer: non-essential information -->
 		<footer>
 			<a href="about_us.php" target="Main">
 				<h2>About Us</h2>

@@ -22,7 +22,8 @@ function checkPasswordStrength() {
 
 /* If the argument starts or ends with a space then return false, else return true. */
 function isValidName(nameStr) {
-	return nameStr.split("")[0] == " " || nameStr.split("").reverse()[0] == " ";
+	var regexName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+	return regexName.test(nameStr);
 }
 
 /* Email address must ends with .fr or .com according to the assignment*/
@@ -33,24 +34,28 @@ function isValidEmail(emailStr) {
 }
 
 /* Clients must be legal */
-function isValidAge(ageInt) {
-	return parseInt(ageInt) > 120 || parseInt(ageInt) < 18;
+function isValidAge(birthday) {
+	var today = new Date();
+	var birthday = new Date(birthday);
+	var age = (today.getTime() - birthday.getTime())/(1000 * 3600 * 24)/365;
+	alert(age);
+	return age >= 18.0;
 }
 
 /* This function checks most of the fields */
-function isValidForm(first, last, e, a, t) {
+function isValidForm(first, last, e, b, t) {
 	var error="";
 	if (!(isValidName(first))) {
-		error+="First name format incorrect, can't contain space at the beginning or at the end\n";
+		error+="First name format incorrect\n";
 	}
 	if (!(isValidName(last))) {
-		error+="Last name format incorrect, can't contain space at the beginning or at the end\n";
+		error+="Last name format incorrect\n";
 	}
 	if (!(isValidEmail(e))) {
 		error+="Email address format incorrect, must be: example@something.com\n";
 	}
-	if (!(isValidAge(a))) {
-		error+="Age format incorrect, must be an integer between 18 and 120\n";
+	if (!(isValidAge(b))) {
+		error+="Age format incorrect, must be greater than 18\n";
 	}
 	if (error==""){
 		return true;
@@ -69,9 +74,9 @@ function validateForm() {
 	var email2 = document.forms["registration_form"]["email2"].value;
 	var password1 = document.forms["registration_form"]["password1"].value;
 	var password2 = document.forms["registration_form"]["password2"].value;
-	var age = document.forms["registration_form"]["age"].value;
+	var birthday = document.forms["registration_form"]["birthday"].value;
 
-	if (isValidForm(firstname, lastname, email1, age)) {
+	if (isValidForm(firstname, lastname, email1, birthday)) {
 		var e1 = String(email1);
 		var e2 = String(email2);
 		if(e1.localeCompare(e2)==0) {

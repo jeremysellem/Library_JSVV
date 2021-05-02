@@ -5,6 +5,15 @@
 	color: #1E1E1E;
 }
 
+/* Article */
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    color: #1E1E1E;
+    margin-left: 20px; /* Pour que le nom ne soit pas collé au logo */
+}
+
 
 #prod_banner{
     width: 100%;

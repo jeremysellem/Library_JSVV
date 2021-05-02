@@ -1,4 +1,5 @@
 <?php
+	session_start();
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +21,8 @@
 			Supprimer des produits ou des livres.</br>
 
 			Afficher les produits et livres disponibles et la quantité disponible en stock ainsi que le prix</br>
+
+			Salut <?php if($_SESSION["CUSTOMER_FIRST_NAME"] != null) echo $_SESSION["CUSTOMER_FIRST_NAME"]; else echo "NULL"; ?> !<br />
 		</div>
 	</body>
 </html>

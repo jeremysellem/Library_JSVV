@@ -17,6 +17,12 @@ h1 {
 	margin-left: 20px; /* Pour que le nom ne soit pas collé au logo */
 }
 
+h2 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 24px;
+	color: #F5F5F5;
+}
+
 nav {
 	margin: 0;
 	overflow: hidden;
@@ -30,6 +36,10 @@ nav {
 
 .navbar-nav > .active > a > h1 {
 	color: #7D8B96;
+}
+
+.navbar-nav > .active > a > img {
+	-webkit-filter: opacity(0.33) drop-shadow(0 0 0 CornflowerBlue);
 }
 
 .nav-item {
@@ -68,12 +78,6 @@ footer a:hover {
 	text-decoration: underline;
 	color: white;
 	text-underline-offset: 10px;
-}
-
-h2 {
-	font-family: 'Poppins', sans-serif;
-	font-size: 24px;
-	color: #F5F5F5;
 }
 
 /* products.php */
@@ -197,15 +201,6 @@ a.prod_button:hover{
 }
 @media screen and (max-width: 500px) {
   #prod_columns figure { width: 100%;}
-}
-
-/* Article */
-
-h2 {
-	font-family: 'Poppins', sans-serif;
-	font-size: 28px;
-	color: #1E1E1E;
-	margin-left: 20px; /* Pour que le nom ne soit pas collé au logo */
 }
 
 /* books.php */

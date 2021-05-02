@@ -1,10 +1,11 @@
 <?php
+	session_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Buy</title>
+		<title>My Account</title>
 		<meta charset="UTF-8">
 		<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +31,7 @@
 		<img src="../images/welcome_books.jpg" width="100%" height="100%">
 		<div>
 			<!-- Log in form -->
-			<form class="p-3" method="POST" action="logged.php" id="log_in_form" onsubmit="return validateLogIn()">
+			<form class="p-3" method="POST" action="logged.php" target="_top" id="log_in_form" onsubmit="return validateLogIn()">
 				<h1 style="text-align: center;">Log in</h1>
 				<div class="form-group">
 					<label for="email_address">Email address</label>
@@ -75,14 +76,14 @@
 				<div class="form-group">
 					<label for="user_type">User type</label>
 					<select class="form-control" name="user_type" id="user_type">
-						<option value="regular">Regular</option>
-						<option value="admin">Administrator</option>
+						<option value="REGULAR">Regular</option>
+						<option value="ADMIN">Administrator</option>
 					</select>
 				</div>
 				<div class="form-group" id="specific_attributes">
 					<div class="form-group">
-						<label for="age">Age</label>
-						<input type="number" class="form-control" name="age" id="age" required>
+						<label for="birthday">Birth date</label>
+						<input type="date" class="form-control" name="birthday" id="birthday" required>
 					</div>
 					<div class="form-group">
 						<label for="postal_address">Postal address</label>
@@ -99,16 +100,16 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			$("#user_type").change(function() {
-				if ($(this).val() == "regular") {
+				if ($(this).val() == "REGULAR") {
 					$('#specific_attributes').show();
-					$('#age').attr('required', '');
-					$('#age').attr('data-error', 'This field is required.');
+					$('#birthday').attr('required', '');
+					$('#birthday').attr('data-error', 'This field is required.');
 					$('#postal_address').attr('required', '');
 					$('#postal_address').attr('data-error', 'This field is required.');
 				} else {
 					$('#specific_attributes').hide();
-					$('#age').removeAttr('required');
-					$('#age').removeAttr('data-error');
+					$('#birthday').removeAttr('required');
+					$('#birthday').removeAttr('data-error');
 					$('#postal_address').removeAttr('required');
 					$('#postal_address').removeAttr('data-error');
 				}
