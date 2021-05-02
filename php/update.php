@@ -1,5 +1,12 @@
 <?php
 	session_start();
+
+	if(isset($_SESSION["IS_ADMIN"]) && $_SESSION["IS_ADMIN"] == true) {
+		echo "OK vous êtes un admin";
+	}
+	else {
+		echo "KO pas amdmin";
+	}
 ?>
 
 <!DOCTYPE html>
