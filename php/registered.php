@@ -1,3 +1,4 @@
+
 <?php
 
 	class User {
@@ -45,7 +46,7 @@
 
 		// Affichage des attributs
 		public function Display() {
-			echo "First name: " . $this->GetFirstName() . "<br/>Last name: " . $this->GetLastName() . "<br/>Email address: " . $this->GetEmailAddress() . "<br/>";
+			echo "<div class='recap'> First name: " . $this->GetFirstName() . "<br/>Last name: " . $this->GetLastName() . "<br/>Email address: " . $this->GetEmailAddress() . "<br/></div>";
 		}
 
 		// Exporter tous les attributs de l'utilisateur sous forme de string
@@ -126,48 +127,63 @@
 
 	}
 
-	class Regular extends User {
+		class Regular extends User {
 
-		private $_age; // Age
-		private $_postal_address; // Adresse postale
-		private $_cart; // Panier
+			private $_age; // Age
+			private $_postal_address; // Adresse postale
+			private $_cart; // Panier
 
-		// Constructeur utilisant le super constructeur 
-		public function __construct($first, $last, $email, $age, $postal) { 
-			parent::__construct($first, $last, $email);
-			$this->_age = $age;
-			$this->_postal_address = $postal;
-			$this->_cart = array();
+			// Constructeur utilisant le super constructeur 
+			public function __construct($first, $last, $email, $age, $postal) { 
+				parent::__construct($first, $last, $email);
+				$this->_age = $age;
+				$this->_postal_address = $postal;
+				$this->_cart = array();
+			}
+
+			// Un produit passé en paramètre sera ajouté au tableau Panier
+			public function AjoutPanier($product) {
+				array_push($_cart, $product);
+			}
+
+			public function getCart() {
+				return $this->_cart;
+			}
+
+			// Affichage des attributs
+			public function Display() {
+				echo parent::Display() . "<div class ='recap'> Age: " . $this->_age . "<br/>Postal address: " . $this->_postal_address . "<br/>Cart: " . implode(", ", $this->_cart) . "<br/></div>";
+			}
+
+			// Exporter tous les attributs de l'utilisateur sous forme de string
+			public function Export() {
+				return parent::Export() . "Age: " . $this->_age . "\nPostal address: " . $this->_postal_address . "\nCart: " . implode(", ", $this->_cart) . "\n";
+			}
+
 		}
 
-		// Un produit passé en paramètre sera ajouté au tableau Panier
-		public function AjoutPanier($product) {
-			array_push($_cart, $product);
-		}
 
-		// Affichage des attributs
-		public function Display() {
-			echo parent::Display() . "Age: " . $this->_age . "<br/>Postal address: " . $this->_postal_address . "<br/>Cart: " . implode(", ", $this->_cart) . "<br/>";
-		}
+			// if($_POST['user_type'] == "admin") {
+			// 	echo "<h3> Bonjour ".$_POST['first_name']. ", vous pouvez sélectionner les articles que vous souhaitez réserver. </h3>";
+			// 	$u = new Administrator($_POST['first_name'], $_POST['last_name'], $_POST['email_address']);
+			// 	$u->Display();
+			// }
+			// else {
+			// 	echo "<h1>Recapitulatif de vos informations</h1>";
+			// 	$u = new Regular($_POST['first_name'], $_POST['last_name'], $_POST['email_address'], $_POST['age'], $_POST['postal_address']);
+			// 	$u->Display();
+			// 	echo "<h3> Bonjour ".$_POST['first_name']. ", vous pouvez sélectionner les articles que vous souhaitez réserver. </h3>";
+			// 	$file = 'users.txt'; // Nom du fichier contenant les informations
+			// 	$current = file_get_contents($file); // Ouvre un fichier pour lire un contenu existant
+			// 	$current .=  $u->Export() . "\n"; // Ajoute l'utilisateur nouvellement créé
+			// 	file_put_contents($file, $current); // Écrit le résultat dans le fichier
+			// 	}
 
-		// Exporter tous les attributs de l'utilisateur sous forme de string
-		public function Export() {
-			return parent::Export() . "Age: " . $this->_age . "\nPostal address: " . $this->_postal_address . "\nCart: " . implode(", ", $this->_cart) . "\n";
-		}
+		?>
 
-	}
+		
 
-	if($_POST['user_type'] == "admin") {
-		$u = new Administrator($_POST['first_name'], $_POST['last_name'], $_POST['email_address']);
-		$u->Display();
-	}
-	else {
-		$u = new Regular($_POST['first_name'], $_POST['last_name'], $_POST['email_address'], $_POST['age'], $_POST['postal_address']);
-		$u->Display();
-		$file = 'users.txt'; // Nom du fichier contenant les informations
-		$current = file_get_contents($file); // Ouvre un fichier pour lire un contenu existant
-		$current .=  $u->Export() . "\n"; // Ajoute l'utilisateur nouvellement créé
-		file_put_contents($file, $current); // Écrit le résultat dans le fichier
-	}
 
-?>
+	</body>
+</html>
+

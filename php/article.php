@@ -29,12 +29,14 @@
 			}
 		?>
 
-		<?php
+		<?php include "connexion_bdd.php"; ?>
 
-			include "connexion_bdd.php";
+		<?php 
+			include "registered.php";
+			session_start(); 
+		?>
 
-
-
+		<?php 
 			try {
 				$sql = "SELECT * FROM Library_JSVV.Livres WHERE Livre_ID = ".$id;
 				$result = $conn->query($sql);
@@ -63,11 +65,6 @@
 
 		?>
 
-		<!-- <div class="title"> -->
-			<!-- <h2><?php echo $type; ?></h2> -->
-		<!-- </div> -->
-
-
 		<div class="container-bigbloc">
 			<div class="container-bloc">
 
@@ -80,25 +77,43 @@
 					<h2><?php echo $auteur; ?></h2>
 					<p id="description"> 
 						<?php
-							echo $description ;
+							echo $description 
 						?> 
 					</p>
-					<h3><?php echo $prix; ?> EUR</h3>
+					<h3><?php echo $prix ?> EUR</h3>
 
-					<!-- <form method="post">
+					<form method="post">
 						Quantité : 
 						<input type="number" name="quantity" value="1" min="1">
 						<input type="submit" name="addToCart" value="Ajouter au panier">
-					</form> -->
+					</form>
 
 				</div>
 				
 			</div>
 		</div>
 
-		<!-- Ajouter proposition de livres de la meme categories en bas -->
 
-	
+		<?php
+			// add to cart only if logged in
+			if (isset($_POST["AjoutPanier"])) {
+				if (isset($_SESSION['admin'])) {
+					$_SESSION['admin']->AjoutPanier($_GET["id"]);
+					
+				}
+				else {
+					if (isset($_SESSION['regular'])) {
+						$_SESSION['regular']->AjoutPanier($_GET["id"]);
+						
+					}
+					else {
+						$_SESSION['regular'] = new User("", "", "");
+						$_SESSION['regular']->AjoutPanier($_GET["id"]);
+						
+					}
+				}
+			}
+		?>
 
 
 	</body>

@@ -63,6 +63,11 @@
 							<h1>Update</h1>
 						</a>
 					</li>
+					<li class="nav-item">
+						<a href="panier.php" target="Main">
+							<h1>Panier</h1>
+						</a>
+					</li>
 			    </ul>
 	    	</nav>
 	    </header>

@@ -40,16 +40,16 @@ function isValidAge(ageInt) {
 /* This function checks most of the fields */
 function isValidForm(first, last, e, a, t) {
 	var error="";
-	if (!(isValidName(first))) {
-		error+="First name format incorrect, can't contain space at the beginning or at the end\n";
-	}
-	if (!(isValidName(last))) {
-		error+="Last name format incorrect, can't contain space at the beginning or at the end\n";
-	}
+	// if (!(isValidName(first))) {
+	// 	error+="BlavBlaBla First name format incorrect, can't contain space at the beginning or at the end\n";
+	// }
+	// if (!(isValidName(last))) {
+	// 	error+="Last name format incorrect, can't contain space at the beginning or at the end\n";
+	// }
 	if (!(isValidEmail(e))) {
 		error+="Email address format incorrect, must be: example@something.com\n";
 	}
-	if (!(isValidAge(a))) {
+	if ((isValidAge(a))) {
 		error+="Age format incorrect, must be an integer between 18 and 120\n";
 	}
 	if (error==""){

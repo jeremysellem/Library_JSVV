@@ -6,8 +6,7 @@
 		<link rel="stylesheet" href="../css/style.css" />
 		<body>
 			
-			<div id='prod_banner'>
-			</div>
+			<div id='prod_banner'></div>
 
 				<div id="prod_wrap"> 
 				<div id="prod_columns" class="prod_col"> 
