@@ -1,4 +1,5 @@
 <?php
+	session_start();
 ?>
 
 <!DOCTYPE html>
@@ -6,20 +7,43 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Update</title>
+		<style type="text/css">
+		    body {
+                margin: 0;
+                padding: 0;
+            }
+           </style>
 	</head>
 	<body>
 		<div>
-			Une page Update où un des administrateurs peut :</br>
 
-			Ajouter des produits ou des livres.</br>
+			<!-- Test whether you are connected -->
+			<?php if(isset($_SESSION["CUSTOMER_ID"]) && $_SESSION["CUSTOMER_ID"] > 0) : ?>
 
-			Modifier des produits ou des livres.</br>
+				<!-- Test whether you are an administrator -->
+				<?php if(isset($_SESSION["IS_ADMIN"]) && $_SESSION["IS_ADMIN"] == true) : ?>
 
-			Lors de la modification ou l’ajout ni le prix ni la quantité ne peuvent être négatives</br>
+					<!-- OK you have access to the user management table -->
+					<iframe id="User_data_table" name="User_data_table" src="user_management_table.php" style="width: 100%;" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" frameBorder="0" scrolling="no" ></iframe>
+				
+				<!-- KO you are not an admin, you have no access to this section -->
+				<?php  else: ?>
 
-			Supprimer des produits ou des livres.</br>
+					<!-- Restricted area Banner -->
+					<img src="../images/restricted_area.jpg" width="100%" height="100%">
+					<h1>Access to this section is only allowed to administrators & moderators.</h1>
+				
+				<?php endif?>
 
-			Afficher les produits et livres disponibles et la quantité disponible en stock ainsi que le prix</br>
+			<!-- KO you are not connected -->
+			<?php  else: ?>
+
+				<!-- Log in or create an account (forms)-->
+				<iframe id="Log_in" name="Log_in" src="log_in.php" style="width: 100%;" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" frameBorder="0" scrolling="no" ></iframe>
+
+			<?php endif?>
+
 		</div>
 	</body>
 </html>
+

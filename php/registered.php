@@ -1,6 +1,6 @@
 
 <?php
-
+	/*
 	class User {
 
 		private $_first_name; // Prénom
@@ -186,4 +186,40 @@
 
 	</body>
 </html>
+	if($_POST['user_type'] == "admin") {
+		$u = new Administrator($_POST['first_name'], $_POST['last_name'], $_POST['email_address']);
+		$u->Display();
+	}
+	else {
+		$u = new Regular($_POST['first_name'], $_POST['last_name'], $_POST['email_address'], $_POST['age'], $_POST['postal_address']);
+		$u->Display();
+		$file = 'users.txt'; // Nom du fichier contenant les informations
+		$current = file_get_contents($file); // Ouvre un fichier pour lire un contenu existant
+		$current .=  $u->Export() . "\n"; // Ajoute l'utilisateur nouvellement créé
+		file_put_contents($file, $current); // Écrit le résultat dans le fichier
+	}*/
+
+	include "connexion_bdd.php";
+
+	try {
+		// Common part of the statement
+		$sql = "INSERT INTO USERS (CUS_FIRST_NAME,CUS_LAST_NAME,CUS_DOB,CUS_ADDR,CUS_EMAIL,CUS_TEL_PREFIX,CUS_TEL,CUS_PW,CUS_JOINDATE,CUS_LASTACCESS,CUS_TYPE)";
+
+		// This part depends on the user type
+		if($_POST['user_type'] == "REGULAR") {
+			$sql .= " VALUES (\"".$_POST['first_name']."\",\"".$_POST['last_name']."\",\"".$_POST['birthday']."\",\"".$_POST['postal_address']."\",\"".$_POST['email1']."\",33,NULL,\"".$_POST['password1']."\",curdate(),curdate(),\"REGULAR\");";
+		}
+		else {
+			$sql .= " VALUES (\"".$_POST['first_name']."\",\"".$_POST['last_name']."\",NULL,NULL,\"".$_POST['email1']."\",33,NULL,\"".$_POST['password1']."\",curdate(),curdate(),\"ADMIN\");";
+		}
+		
+		// Execute query
+		$result = $conn->query($sql);
+	}
+	catch (Exception $e) {
+		echo $e;
+	}
+
+	$conn = null;
+	echo "You are now registered. Please move to the catalog to make your purchase.";
 
