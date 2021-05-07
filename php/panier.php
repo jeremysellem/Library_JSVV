@@ -1,5 +1,5 @@
 <?php session_start();
-include 'connexion.php';
+	include 'connexion.php';
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ include 'connexion.php';
 		<div id='prod_banner'></div>
 
 		<div class="title" id="title-cart">
-			<h2>Panier</h2>
+			<h2>Your cart:</h2>
 		</div>
 
 		<!-- <div class="container-bigbloc"> -->
@@ -49,19 +49,32 @@ include 'connexion.php';
 					$result = $result->fetch();
 
 					if ($result["Livre_ID"]) {
-						echo '<div class="product-bloc">
-							<div class="product-info">
-								<a class="link" href="article.php?id='.$result["Livre_ID"].'">
-									<h4>'.$result["Titre"].'</h4>
-								</a>
-							</div>
-						</div>';
+						// echo '<div class="product-bloc">
+						// 	<div class="product-info">
+						// 		<a class="link" href="article.php?id='.$result["Livre_ID"].'">
+						// 			<h4>'.$result["Titre"].'</h4>
+						// 		</a>
+						// 	</div>
+						// </div>';
+						echo '<figure>
+							<img src='.$result["Lien_image"].'>
+							<figcaption >'.$result["Titre"].'</figcaption>
+							<figcaption >'.$result["Auteur"].'</figcaption>
+							<span class="price">'.$result["Prix"].' EUR</span>
+							<a class="prod_button" href="article.php?id='.$result["Livre_ID"].'"> Description</a>
+							<form method="post"> 
+								<input type="submit" name="remove" value="Remove from cart">
+							</form>
+							</figure>';
 		
 					}
 				}
 
 				echo "</div>";
 				echo "</div>";
+
+
+
 			}
 			catch (Exception $e) {
 				echo "Erreur";
@@ -72,8 +85,16 @@ include 'connexion.php';
 		}
 
 	?>
+	<!-- remove artcile from cart NE FONCTIONE PAS ENCORE -->
 	<?php	
-			// include "search.php";
+		if (isset($_POST["remove"])) {
+			for ($i = 0; $i < count($_SESSION["cart"]); $i++)  {
+				if ($_SESSION["cart"][$i] == $id){
+					unset($_SESSION["cart"][$i]);
+				}
+				
+			}
+		}
 		?>
 	
 </div>

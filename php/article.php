@@ -63,15 +63,7 @@
 			$conn = null;
 
 		?>
-		<?php
-			echo $id;
-			echo '<br>';
 
-			array_push($_SESSION["cart"], "4");
-			foreach ($_SESSION["cart"] as $product) {
-				echo $product;
-			}
-		?>
 		<div class="container-bigbloc">
 			<div class="container-bloc">
 
@@ -89,9 +81,7 @@
 					</p>
 					<h3><?php echo $prix ?> EUR</h3>
 
-					<form method="post"> <!-- action="ajout_panier()" faire une pop up qui dit "article ajouté au panier -->
-						<!-- Quantité :  -->
-						<!-- <input type="number" name="quantity" value="1" min="1"> -->
+					<form method="post"> 
 						<input type="submit" name="addToCart" value="Ajouter au panier">
 	
 					</form>
@@ -101,7 +91,13 @@
 			</div>
 		</div>
 
+		<?php
 
+			if (isset($_POST["addToCart"])) {
+				
+				array_push($_SESSION["cart"], $id);
+			}
+		?>
 		
 
 
