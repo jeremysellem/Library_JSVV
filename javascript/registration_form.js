@@ -43,7 +43,7 @@ function isValidAge(birthday) {
 }
 
 /* This function checks most of the fields */
-function isValidForm(first, last, e, b, t) {
+function isValidForm(first, last, e, b, t, u) {
 	var error="";
 	if (!(isValidName(first))) {
 		error+="First name format incorrect\n";
@@ -54,9 +54,12 @@ function isValidForm(first, last, e, b, t) {
 	if (!(isValidEmail(e))) {
 		error+="Email address format incorrect, must be: example@something.com\n";
 	}
-	if (!(isValidAge(b))) {
-		error+="Age format incorrect, must be greater than 18\n";
+	if (u=='REGULAR') {
+		if (!(isValidAge(b))) {
+			error+="Age format incorrect, must be greater than 18\n";
+		}
 	}
+	
 	if (error==""){
 		return true;
 	}
@@ -75,8 +78,9 @@ function validateForm() {
 	var password1 = document.forms["registration_form"]["password1"].value;
 	var password2 = document.forms["registration_form"]["password2"].value;
 	var birthday = document.forms["registration_form"]["birthday"].value;
-
-	if (isValidForm(firstname, lastname, email1, birthday)) {
+	var user_type = document.forms["registration_form"]["user_type"].value;
+	console.log(user_type);
+	if (isValidForm(firstname, lastname, email1, birthday, user_type)) {
 		var e1 = String(email1);
 		var e2 = String(email2);
 		if(e1.localeCompare(e2)==0) {

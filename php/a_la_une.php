@@ -1,27 +1,25 @@
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Products</title>
+		<title>Dernières parutions</title>
 		<link rel="stylesheet" href="../css/style.css" />
 		<body>
-			
-			<div id='prod_banner_product'>
-			</div>
-
-				<div id="prod_wrap"> 
+			<div id="prod_wrap"> 
 				<div id="prod_columns" class="prod_col"> 
 
-	
-	
 				<?php
 					include "connexion_bdd.php";
 					
 					try {
-						$sql = "SELECT * FROM Library_JSVV.Livres";
+						$sql = "SELECT * FROM Library_JSVV.Livres ORDER BY Date_parution DESC LIMIT 4 ";
 						$result = $conn->query($sql);
 						$num_rows = $result->fetchColumn();
-						$result->execute(); 
+						$result->execute(); /* because fetch is a PDOStatement cursor */
 						if ($num_rows > 0) {
 							
 							foreach ($result as $row) {

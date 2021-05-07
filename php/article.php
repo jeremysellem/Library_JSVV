@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	
 ?>
 
 <!DOCTYPE>
@@ -35,11 +36,6 @@
 		<?php include "connexion_bdd.php"; ?>
 
 		<?php 
-			include "registered.php";
-			session_start(); 
-		?>
-
-		<?php 
 			try {
 				$sql = "SELECT * FROM Library_JSVV.Livres WHERE Livre_ID = ".$id;
 				$result = $conn->query($sql);
@@ -67,7 +63,15 @@
 			$conn = null;
 
 		?>
+		<?php
+			echo $id;
+			echo '<br>';
 
+			array_push($_SESSION["cart"], "4");
+			foreach ($_SESSION["cart"] as $product) {
+				echo $product;
+			}
+		?>
 		<div class="container-bigbloc">
 			<div class="container-bloc">
 
@@ -85,10 +89,11 @@
 					</p>
 					<h3><?php echo $prix ?> EUR</h3>
 
-					<form method="post">
-						Quantité : 
-						<input type="number" name="quantity" value="1" min="1">
+					<form method="post"> <!-- action="ajout_panier()" faire une pop up qui dit "article ajouté au panier -->
+						<!-- Quantité :  -->
+						<!-- <input type="number" name="quantity" value="1" min="1"> -->
 						<input type="submit" name="addToCart" value="Ajouter au panier">
+	
 					</form>
 
 				</div>
@@ -97,26 +102,7 @@
 		</div>
 
 
-		<?php
-			// add to cart only if logged in
-			if (isset($_POST["AjoutPanier"])) {
-				if (isset($_SESSION['admin'])) {
-					$_SESSION['admin']->AjoutPanier($_GET["id"]);
-					
-				}
-				else {
-					if (isset($_SESSION['regular'])) {
-						$_SESSION['regular']->AjoutPanier($_GET["id"]);
-						
-					}
-					else {
-						$_SESSION['regular'] = new User("", "", "");
-						$_SESSION['regular']->AjoutPanier($_GET["id"]);
-						
-					}
-				}
-			}
-		?>
+		
 
 
 	</body>

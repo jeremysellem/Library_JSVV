@@ -1,4 +1,4 @@
-
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,28 +14,30 @@
 
 		<?php include "connexion_bdd.php"; ?>
 
-		<?php include "registered.php"; ?>
+		<?php 
+		// include "registered.php";
+		 ?>
 
 		<div class="title">
 			<h1>Recherche</h1>
 		</div>
 
 		<?php 
-				if($_POST['user_type'] == "admin") {
-				echo "<h3> Bonjour ".$_POST['first_name']. ", vous pouvez sélectionner les articles que vous souhaitez réserver. </h3>";
-				$u = new Administrator($_POST['first_name'], $_POST['last_name'], $_POST['email_address']);
-				$u->Display();
-			}
-			else {
-				echo "<h1>Recapitulatif de vos informations</h1>";
-				$u = new Regular($_POST['first_name'], $_POST['last_name'], $_POST['email_address'], $_POST['age'], $_POST['postal_address']);
-				$u->Display();
-				echo "<h3> Bonjour ".$_POST['first_name']. ", vous pouvez sélectionner les articles que vous souhaitez réserver. </h3>";
-				$file = 'users.txt'; // Nom du fichier contenant les informations
-				$current = file_get_contents($file); // Ouvre un fichier pour lire un contenu existant
-				$current .=  $u->Export() . "\n"; // Ajoute l'utilisateur nouvellement créé
-				file_put_contents($file, $current); // Écrit le résultat dans le fichier
-				}
+			// 	if($_POST['user_type'] == "admin") {
+			// 	echo "<h3> Bonjour ".$_POST['first_name']. ", vous pouvez sélectionner les articles que vous souhaitez réserver. </h3>";
+			// 	$u = new Administrator($_POST['first_name'], $_POST['last_name'], $_POST['email_address']);
+			// 	$u->Display();
+			// }
+			// else {
+			// 	echo "<h1>Recapitulatif de vos informations</h1>";
+			// 	$u = new Regular($_POST['first_name'], $_POST['last_name'], $_POST['email_address'], $_POST['age'], $_POST['postal_address']);
+			// 	$u->Display();
+			// 	echo "<h3> Bonjour ".$_POST['first_name']. ", vous pouvez sélectionner les articles que vous souhaitez réserver. </h3>";
+			// 	$file = 'users.txt'; // Nom du fichier contenant les informations
+			// 	$current = file_get_contents($file); // Ouvre un fichier pour lire un contenu existant
+			// 	$current .=  $u->Export() . "\n"; // Ajoute l'utilisateur nouvellement créé
+			// 	file_put_contents($file, $current); // Écrit le résultat dans le fichier
+			// 	}
 		?>
 
 

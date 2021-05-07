@@ -40,8 +40,10 @@
 				<p>Welcome !</p>
 			<?php endif?>
 		</div>
+		
 		<div style="text-align: center;">
-			<h1>Our products</h1>
+			<h1>Dernières parutions</h1>
+			<?php include "a_la_une.php" ?>
 		</div>
 	</body>
 </html>

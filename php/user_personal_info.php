@@ -20,7 +20,13 @@
 	<body>
 
 		<!-- Archives Banner -->
-		<img src="../images/coffe_blue.jpg" width="100%" height="100%">
+		<img src="../images/coffe_blue.jpg" width="100%" height="70%">
+		
+		
+		<!-- Update link -->
+		<a href="update.php">
+			<h2>Update</h2>
+		</a>
 
 		<!-- Disconnect button -->
 		<button class='btn btn-danger btn-xs' type="submit" name="Logout" onclick="parent.parent.logout_dialog();">

@@ -1,58 +1,59 @@
 <?php
-	session_start();
+session_start();
+$_SESSION["cart"] = array();
 
-	// If we just filled the log in form
-	if(isset($_SESSION["LOGGING_IN"]) && $_SESSION["LOGGING_IN"] == true) {
+// If we just filled the log in form
+if(isset($_SESSION["LOGGING_IN"]) && $_SESSION["LOGGING_IN"] == true) {
 
-		try {
+	try {
 
-			// Initiate connection to DB
-			include "connexion_bdd.php";
+		// Initiate connection to DB
+		include "connexion_bdd.php";
 
-			// Prepare statement to verify credentials
-			$sql = "SELECT CUS_ID, CUS_FIRST_NAME, CUS_TYPE FROM USERS WHERE CUS_EMAIL=\"" . $_SESSION['email_address'] . "\" AND CUS_PW=\"" . $_SESSION['password'] . "\";";
-			
-			// Execute query
-			$result = $conn->query($sql);
+		// Prepare statement to verify credentials
+		$sql = "SELECT CUS_ID, CUS_FIRST_NAME, CUS_TYPE FROM USERS WHERE CUS_EMAIL=\"" . $_SESSION['email_address'] . "\" AND CUS_PW=\"" . $_SESSION['password'] . "\";";
+		
+		// Execute query
+		$result = $conn->query($sql);
 
-			// Get results
-			$user = $result->fetch();
+		// Get results
+		$user = $result->fetch();
 
-			// Successful credentials ?
-			if($user["CUS_ID"] > 0) {
-				// Yes then store the CUS_ID in the session
-				$_SESSION["CUSTOMER_ID"] = $user["CUS_ID"];
-				$_SESSION["CUSTOMER_FIRST_NAME"] = $user["CUS_FIRST_NAME"];
-				if($user["CUS_TYPE"] == "ADMIN") {
-					$_SESSION["IS_ADMIN"] = true;
-				}
-				else {
-					$_SESSION["IS_ADMIN"] = false;
-				}
-				
-				echo "You are now connected. Please move on to the catalog to make your purchase.";
+		// Successful credentials ?
+		if($user["CUS_ID"] > 0) {
+			// Yes then store the CUS_ID in the session
+			$_SESSION["CUSTOMER_ID"] = $user["CUS_ID"];
+			$_SESSION["CUSTOMER_FIRST_NAME"] = $user["CUS_FIRST_NAME"];
+			if($user["CUS_TYPE"] == "ADMIN") {
+				$_SESSION["IS_ADMIN"] = true;
 			}
 			else {
-				// No then try again
-				echo "Wrong email/password combination, please try again.";
+				$_SESSION["IS_ADMIN"] = false;
 			}
+			
+			echo "You are now connected. Please move on to the catalog to make your purchase.";
 
 		}
-		catch (Exception $e) {
-			echo $e;
+		else {
+			// No then try again
+			echo "Wrong email/password combination, please try again.";
 		}
 
-		$conn = null;
+	}
+	catch (Exception $e) {
+		echo $e;
 	}
 
-	$_SESSION["LOGGING_IN"] = false;
+	$conn = null;
+}
 
-	// If we just clicked on Logout
-	if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
-		$_SESSION = [];
-		session_destroy();
-	}
+$_SESSION["LOGGING_IN"] = false;
 
+// If we just clicked on Logout
+if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
+	$_SESSION = [];
+	session_destroy();
+}
 ?>
 
 <!DOCTYPE html>
@@ -101,23 +102,31 @@
 						</a>
 					</li>
 			    	<li class="item">
-						<a href="products.php" target="Main">
+					<div class="dropdown">
+						<a class="dropbtn" target="Main">Products</a>
+						<div class="dropdown-content">
+							<a href="books.php" target="Main"> Books</a>
+							<a href="products.php" target="Main"> Stationery</a>
+							
+						</div>
+						<!-- <a href="products.php" target="Main">
 							<h1>Products</h1>
-						</a>
+						</a> -->
 					</li>
-					<li class="item">
+					<!-- <li class="item">
 						<a href="books.php" target="Main">
 							<h1>Books</h1>
 						</a>
-					</li>
+					</li> -->
 					<li class="item">
 						<a href="update.php" target="Main">
-							<h1>Update</h1>
+							<h1>Search</h1>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a href="panier.php" target="Main">
-							<h1>Panier</h1>
+					<li class="item">
+					<a href="panier.php" target="Main" class="logo">
+							<img src="../images/panier.png" width="70" height="50">
+							<h1>Cart</h1>
 					<li class="item">
 						<a href="account.php" target="Main" class="logo">
 							<img src="../images/user.png" width="40" height="40">
@@ -132,7 +141,12 @@
 	    	</nav>
 	    </header>
 	    <!-- Main content -->
-		<iframe style="width: 100%;" id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
+		<iframe style="width: 100%; min-height: 700px;" id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
+		
+		<?php 
+			// include 'a_la_une.php' 
+		?>						
+
 		<!-- Footer: non-essential information -->
 		<footer>
 			<a href="about_us.php" target="Main">
