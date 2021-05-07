@@ -101,25 +101,21 @@ if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
 							<h1>Home</h1>
 						</a>
 					</li>
+					<!-- <nav> -->
 			    	<li class="item">
-					<div class="dropdown">
-						<a class="dropbtn" target="Main">Products</a>
-						<div class="dropdown-content">
-							<a href="books.php" target="Main"> Books</a>
-							<a href="products.php" target="Main"> Stationery</a>
-							
-						</div>
-						<!-- <a href="products.php" target="Main">
+						<a class="dropbtn"  href="products.php" target="Main">
 							<h1>Products</h1>
-						</a> -->
-					</li>
-					<!-- <li class="item">
-						<a href="books.php" target="Main">
-							<h1>Books</h1>
 						</a>
-					</li> -->
+						<ul class="dropdown-content">
+							<li><a href="books.php" target="Main"> Books</a></li>
+							<li><a href="products.php" target="Main"> Stationery</a></li>
+							
+						</ul>
+					</li>
+					<!-- </nav> -->
+
 					<li class="item">
-						<a href="update.php" target="Main">
+						<a href="search.php" target="Main">
 							<h1>Search</h1>
 						</a>
 					</li>
@@ -141,7 +137,7 @@ if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
 	    	</nav>
 	    </header>
 	    <!-- Main content -->
-		<iframe style="width: 100%; min-height: 700px;" id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
+		<iframe style="width: 100%; min-height: 700px; 	z-index: 0; " id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
 		
 		<?php 
 			// include 'a_la_une.php' 
