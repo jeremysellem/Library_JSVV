@@ -82,6 +82,7 @@
 					<h3><?php echo $prix ?> EUR</h3>
 
 					<form method="post"> 
+						<input type="number" name="quantity" value="1" min="1">
 						<input type="submit" name="addToCart" value="Ajouter au panier">
 	
 					</form>
@@ -93,12 +94,11 @@
 
 		<?php
 
-			if (isset($_POST["addToCart"])) {
-				
-				array_push($_SESSION["cart"], $id);
+			if (isset($_POST["addToCart"]) && $_POST["quantity"]>0 ) {
+				$_SESSION["cart"][$id] = $_POST["quantity"];
 			}
 		?>
-		
+	
 
 
 	</body>
