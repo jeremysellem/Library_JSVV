@@ -1,59 +1,59 @@
 <?php
-session_start();
-$_SESSION["cart"] = array();
+	session_start();
+	$_SESSION["cart"] = array();
 
-// If we just filled the log in form
-if(isset($_SESSION["LOGGING_IN"]) && $_SESSION["LOGGING_IN"] == true) {
+	// If we just filled the log in form
+	if(isset($_SESSION["LOGGING_IN"]) && $_SESSION["LOGGING_IN"] == true) {
 
-	try {
+		try {
 
-		// Initiate connection to DB
-		include "connexion_bdd.php";
+			// Initiate connection to DB
+			include "connexion_bdd.php";
 
-		// Prepare statement to verify credentials
-		$sql = "SELECT CUS_ID, CUS_FIRST_NAME, CUS_TYPE FROM USERS WHERE CUS_EMAIL=\"" . $_SESSION['email_address'] . "\" AND CUS_PW=\"" . $_SESSION['password'] . "\";";
-		
-		// Execute query
-		$result = $conn->query($sql);
+			// Prepare statement to verify credentials
+			$sql = "SELECT CUS_ID, CUS_FIRST_NAME, CUS_TYPE FROM USERS WHERE CUS_EMAIL=\"" . $_SESSION['email_address'] . "\" AND CUS_PW=\"" . $_SESSION['password'] . "\";";
+			
+			// Execute query
+			$result = $conn->query($sql);
 
-		// Get results
-		$user = $result->fetch();
+			// Get results
+			$user = $result->fetch();
 
-		// Successful credentials ?
-		if($user["CUS_ID"] > 0) {
-			// Yes then store the CUS_ID in the session
-			$_SESSION["CUSTOMER_ID"] = $user["CUS_ID"];
-			$_SESSION["CUSTOMER_FIRST_NAME"] = $user["CUS_FIRST_NAME"];
-			if($user["CUS_TYPE"] == "ADMIN") {
-				$_SESSION["IS_ADMIN"] = true;
+			// Successful credentials ?
+			if($user["CUS_ID"] > 0) {
+				// Yes then store the CUS_ID in the session
+				$_SESSION["CUSTOMER_ID"] = $user["CUS_ID"];
+				$_SESSION["CUSTOMER_FIRST_NAME"] = $user["CUS_FIRST_NAME"];
+				if($user["CUS_TYPE"] == "ADMIN") {
+					$_SESSION["IS_ADMIN"] = true;
+				}
+				else {
+					$_SESSION["IS_ADMIN"] = false;
+				}
+				
+				echo "You are now connected. Please move on to the catalog to make your purchase.";
+
 			}
 			else {
-				$_SESSION["IS_ADMIN"] = false;
+				// No then try again
+				echo "Wrong email/password combination, please try again.";
 			}
-			
-			echo "You are now connected. Please move on to the catalog to make your purchase.";
 
 		}
-		else {
-			// No then try again
-			echo "Wrong email/password combination, please try again.";
+		catch (Exception $e) {
+			echo $e;
 		}
 
-	}
-	catch (Exception $e) {
-		echo $e;
+		$conn = null;
 	}
 
-	$conn = null;
-}
+	$_SESSION["LOGGING_IN"] = false;
 
-$_SESSION["LOGGING_IN"] = false;
-
-// If we just clicked on Logout
-if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
-	$_SESSION = [];
-	session_destroy();
-}
+	// If we just clicked on Logout
+	if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
+		$_SESSION = [];
+		session_destroy();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +65,7 @@ if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/home.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 		<style type="text/css">
@@ -112,8 +112,6 @@ if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
 							
 						</ul>
 					</li>
-					<!-- </nav> -->
-
 					<li class="item">
 						<a href="search.php" target="Main">
 							<h1>Search</h1>
@@ -136,26 +134,22 @@ if(isset($_GET["LOGGING_OUT"]) && $_GET["LOGGING_OUT"] == true) {
 			    </ul>
 	    	</nav>
 	    </header>
+
 	    <!-- Main content -->
 		<iframe style="width: 100%; min-height: 700px; 	z-index: 0; " id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
-		
-		<?php 
-			// include 'a_la_une.php' 
-		?>						
 
 		<!-- Footer: non-essential information -->
 		<footer>
 			<a href="about_us.php" target="Main">
 				<h2>About Us</h2>
 			</a>
-
 			<a href="contact.php" target="Main">
 				<h2>Contact</h2>
 			</a>
 			<a href="legal.php" target="Main">
 				<h2>Legal</h2>
 			</a>
-	        <a href="../html/main.html" target="Main" style="text-decoration: none;">
+	        <a href="main.php" target="Main" style="text-decoration: none;">
 	        	<h2>J&V Library &#169;</h2>
 	        </a>
 	    </footer>

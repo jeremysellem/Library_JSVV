@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Products</title>
-		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/products.css" />
 		<body>
 			
 			<div id='prod_banner_product'>

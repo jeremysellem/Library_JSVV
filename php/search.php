@@ -4,8 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Search</title>
-		<link rel="stylesheet" href="../css/style.css" />
-		<!-- <link rel="stylesheet" href="../css/search.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../css/search.css">
 	</head>
 	<body>
 

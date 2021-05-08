@@ -1,0 +1,119 @@
+/* home.php */
+
+body {
+	background-color: #F5F5F5;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none; /* Pour pas qu'il souligne les liens */
+}
+
+a h1 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 28px;
+	color: #1E1E1E;
+	margin-left: 20px; /* Pour que le nom ne soit pas collé au logo */
+}
+
+h2 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 24px;
+	color: #F5F5F5;
+}
+
+a h2 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 26px;
+	color: #F5F5F5;
+}
+
+nav {
+	margin: 0;
+	overflow: hidden;
+	z-index: 999999; 
+}
+
+.navbar {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	height: 80px;
+	z-index: 999999; 
+}
+
+.navbar > .active > a > h1 {
+	color: #7D8B96;
+}
+
+.navbar > .active > a > img {
+	-webkit-filter: opacity(0.33) drop-shadow(0 0 0 CornflowerBlue);
+}
+
+.item{
+	display: inline-block;
+	list-style-type: none;
+}
+
+.item a {
+	display: block;
+	padding: 0px 2em;
+}
+
+.item:first-child {
+	margin-right: auto;
+}
+
+.item a.logo {
+	display: flex;
+	align-items: center;
+}
+
+.item a:hover {
+	text-decoration: underline;
+	color: #7D8B96;
+	text-underline-offset: 10px;
+}
+
+/* drop down menu  */
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	width: 100%;
+	z-index: 999999; 
+}
+
+nav > ul li:hover .dropdown-content {
+	display: block; 
+	
+}
+
+.a .dropbtn:hover {
+	display: inline-block;
+	width: 100%;
+}
+.dropdown-content li{
+	list-style-type: none;
+	font-family: 'Poppins', sans-serif;
+	font-size: 26px;
+	color: #F5F5F5;
+}
+.dropdown-content a {
+	border: none;
+	color: black;
+	background-color: inherit;
+	transition: background-color 0.2s linear;
+}
+
+/* update.php */
+
+/* about_us.php */
+
+/* contact.php */
+
+/* legal.php */
+
+
+

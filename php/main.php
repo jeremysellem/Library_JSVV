@@ -6,15 +6,20 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Main</title>
-		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/home.css" />
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 		<style type="text/css">
+			body {
+				background-color: #F5F5F5;
+				margin: 0;
+				padding: 0;
+			}
 
 			.top-right {
 				position: absolute;
 				top: 8px;
-				right: 100px;
+				right: 25px;
 				text-align: center;
 			}
 
@@ -32,6 +37,7 @@
 		</style>
 	</head>
 	<body>
+		<!-- Main banner -->
 		<img src="../images/background_office.jpg">
 		<div class="top-right">
 			<?php if(isset($_SESSION["CUSTOMER_ID"]) && $_SESSION["CUSTOMER_ID"] > 0) : ?>
@@ -41,8 +47,9 @@
 			<?php endif?>
 		</div>
 		
+		<!-- Featured products -->
 		<div style="text-align: center;">
-			<h1>Dernières parutions</h1>
+			<h1>Featured products</h1>
 			<?php include "a_la_une.php" ?>
 		</div>
 	</body>

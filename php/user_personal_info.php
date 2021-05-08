@@ -14,6 +14,7 @@
 				background-color: #F5F5F5;
 				margin: 0;
 				padding: 0;
+				text-align: center;
 			}
 		</style>
 	</head>
@@ -24,9 +25,9 @@
 		
 		
 		<!-- Update link -->
-		<a href="update.php">
-			<h2>Update</h2>
-		</a>
+		<button class="btn btn-primary">
+			<a href="update.php">Update</a>
+		</button> <!-- TODO le height ne s'adapte pas ! -->
 
 		<!-- Disconnect button -->
 		<button class='btn btn-danger btn-xs' type="submit" name="Logout" onclick="parent.parent.logout_dialog();">

@@ -7,7 +7,8 @@
 	<head>
 		<title>Panier</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/products.css">
+		<link rel="stylesheet" type="text/css" href="../css/search.css">
 		<style type="text/css">
 			#title-cart {
 				margin-top: 80px;
