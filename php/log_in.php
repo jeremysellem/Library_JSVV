@@ -48,7 +48,7 @@
 			</form>
 			
 			<!-- Registration form -->
-			<form class="p-3" method="POST" action="search.php" id="registration_form" onsubmit="return validateForm()">
+			<form class="p-3" method="POST" action="registered.php" target="_top" id="registration_form" onsubmit="return validateForm()">
 				<h1 style="text-align: center;">New customer?</h1>
 				<div class="form-group">
 					<label for="first_name">First name</label>

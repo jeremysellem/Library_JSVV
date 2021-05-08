@@ -1,105 +1,97 @@
 <?php
 	session_start();
-	
 ?>
 
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Article</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="../css/article.css" />
 	</head>
-
-	<style type="">
-	
-	</style>
-
 	<body>
 
 		<div id='prod_banner'>
 		</div>
 
-			<div id="prod_wrap"> 
+		<div id="prod_wrap"> 
 			<div id="prod_columns" class="prod_col"> 
 
-		<?php 
-			if (isset($_GET["id"])) {
-				$id = $_GET["id"];
-			}
-			else {
-				echo "Page introuvable";
-				exit();
-			}
-		?>
+				<?php 
+					if (isset($_GET["id"])) {
+						$id = $_GET["id"];
+					}
+					else {
+						echo "Page introuvable";
+						exit();
+					}
+				?>
 
-		<?php include "connexion_bdd.php"; ?>
+				<?php 
 
-		<?php 
-			try {
-				$sql = "SELECT * FROM Library_JSVV.Livres WHERE Livre_ID = ".$id;
-				$result = $conn->query($sql);
-				$result = $result->fetch();
+					include "connexion_bdd.php";
 
-				if ($result["Livre_ID"]) {
+					try {
+						$sql = "SELECT * FROM Library_JSVV.Livres WHERE Livre_ID = ".$id;
+						$result = $conn->query($sql);
+						$result = $result->fetch();
 
-					$titre = $result["Titre"];
-					$auteur = $result["Auteur"];
-					$description = $result["Resume"];
-					$prix = $result["Prix"];
-					$image = $result["Lien_image"];
-					$type = $result["Categorie"];
-				}
-				else {
-					echo "Page introuvable";
-					exit();
-				}
-			}
-			catch (Exception $e) {
-				echo "Page introuvable" .$e. " ";
-				exit(); 
-			}
+						if ($result["Livre_ID"]) {
 
-			$conn = null;
+							$titre = $result["Titre"];
+							$auteur = $result["Auteur"];
+							$description = $result["Resume"];
+							$prix = $result["Prix"];
+							$image = $result["Lien_image"];
+							$type = $result["Categorie"];
+						}
+						else {
+							echo "Page introuvable";
+							exit();
+						}
+					}
+					catch (Exception $e) {
+						echo "Page introuvable" .$e. " ";
+						exit(); 
+					}
 
-		?>
+					$conn = null;
 
-		<div class="container-bigbloc">
-			<div class="container-bloc">
+				?>
 
-				<div class="product-bloc" id="product-image">
-					<?php echo "<img class='image' src='".$image."'>"; ?>	
+				<div class="container-bigbloc">
+					<div class="container-bloc">
+
+						<div class="product-bloc" id="product-image">
+							<?php echo "<img class='image' src='".$image."'>"; ?>	
+						</div>
+
+						<div class="product-bloc" id="product-info">
+							<h1><?php echo $titre; ?></h1>
+							<h2><?php echo $auteur; ?></h2>
+							<p id="description"> 
+								<?php
+									echo $description 
+								?> 
+							</p>
+							<h3><?php echo $prix ?> EUR</h3>
+
+							<form method="post"> 
+								<input type="number" name="quantity" value="1" min="1">
+								<input type="submit" name="addToCart" value="Ajouter au panier">
+			
+							</form>
+
+						</div>
+						
+					</div>
 				</div>
-
-				<div class="product-bloc" id="product-info">
-					<h1><?php echo $titre; ?></h1>
-					<h2><?php echo $auteur; ?></h2>
-					<p id="description"> 
-						<?php
-							echo $description 
-						?> 
-					</p>
-					<h3><?php echo $prix ?> EUR</h3>
-
-					<form method="post"> 
-						<input type="number" name="quantity" value="1" min="1">
-						<input type="submit" name="addToCart" value="Ajouter au panier">
-	
-					</form>
-
-				</div>
-				
+				<?php
+					if (isset($_POST["addToCart"]) && $_POST["quantity"]>0 ) {
+						$_SESSION["cart"][$id] = $_POST["quantity"];
+					}
+				?>
 			</div>
 		</div>
-
-		<?php
-
-			if (isset($_POST["addToCart"]) && $_POST["quantity"]>0 ) {
-				$_SESSION["cart"][$id] = $_POST["quantity"];
-			}
-		?>
-	
-
-
 	</body>
 </html>

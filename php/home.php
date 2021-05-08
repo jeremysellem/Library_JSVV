@@ -30,13 +30,11 @@
 				else {
 					$_SESSION["IS_ADMIN"] = false;
 				}
-				
-				echo "You are now connected. Please move on to the catalog to make your purchase.";
-
 			}
 			else {
 				// No then try again
-				echo "Wrong email/password combination, please try again.";
+				//echo "Wrong email/password combination, please try again.";
+				header("log_in.php");
 			}
 
 		}
@@ -88,6 +86,7 @@
 		<!-- Top of the page -->
 		<header>
 			<!-- Navigation bar: links to relevant sections -->
+			<!-- TODO quand on rétrécit la page de droit à gauche le menu est moche et se met sur deux lignes)-->
 			<nav>
 				<ul class="navbar">
 					<li class="item">
@@ -107,8 +106,8 @@
 							<h1>Products</h1>
 						</a>
 						<ul class="dropdown-content">
-							<li><a href="books.php" target="Main"> Books</a></li>
-							<li><a href="products.php" target="Main"> Stationery</a></li>
+							<li><a href="books.php" target="Main">Books</a></li>
+							<li><a href="products.php" target="Main">Stationery</a></li>
 							
 						</ul>
 					</li>

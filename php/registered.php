@@ -1,5 +1,5 @@
-<?php session_start();?>
 <?php
+	session_start();
 	
 	// class User {
 
@@ -220,10 +220,19 @@
 
 	$conn = null;
 	echo "You are now registered. Please move to the catalog to make your purchase.";
-			
-			
-			
-		?>
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Registered</title>
+		<meta http-equiv="refresh" content="0; URL=logged.php" />
+	</head>
+	<body>
+	</body>
+</html>
 
 		
 

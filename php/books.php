@@ -8,15 +8,15 @@
 		<meta charset="UTF-8">
 		<title>Products</title>
 		<link rel="stylesheet" href="../css/products.css" />
+	</head>
 		<body>
-			
-			<div id='prod_banner'></div>
+			<!-- Banner -->
+			<div id='prod_banner'>
+			</div>
 
-				<div id="prod_wrap"> 
-				<div id="prod_columns" class="prod_col"> 
-
-	
-	
+			<!-- Content -->
+			<div id="prod_wrap"> 
+				<div id="prod_columns" class="prod_col">
 				<?php
 					include "connexion_bdd.php";
 					
@@ -46,15 +46,9 @@
 						echo "0 result".$e;
 					}
 
-					/*$conn-> close();*/
 					$conn = null;
 				?>
-	
-
 			</div>
 		</div>
 	</body>
-
-	</head>
-
 </html> 

@@ -1,28 +1,27 @@
-<?php session_start();?>
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<title>Search</title>
-		<link rel="stylesheet" type="text/css" href="../css/search.css">
+		<link rel="stylesheet" type="text/css" href="../css/products.css">
 	</head>
 	<body>
 
 		<div id='prod_banner'>
 		</div>
 
-		<?php include "connexion_bdd.php"; ?>
-
-		<?php 
-		// include "registered.php";
-		 ?>
+		<?php
+			include "connexion_bdd.php";
+		?>
 
 		<div class="title">
 			<h1>Recherche</h1>
 		</div>
 
-
-	
 		<div class="container-bigbloc">
 			<div class="search-bar">
 				
