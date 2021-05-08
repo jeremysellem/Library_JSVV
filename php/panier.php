@@ -1,5 +1,4 @@
-<?php
-	session_start();
+<?php session_start();
 ?>
 
 <!DOCTYPE html>
@@ -58,11 +57,8 @@
 							<span class="price">'.$result["Prix"].' EUR</span>
 							<a class="prod_button" href="article.php?id='.$result["Livre_ID"].'"> Description</a>
 							<h4>x'.$quantity.'</h4>
-							'.$_SERVER["REQUEST_URI"].'
-							<form method="post" action="update_quantity?id='.$result["Livre_ID"].'&url='.$_SERVER["REQUEST_URI"].'">
-								Modifier la quantité : 
-								<input class="modify-input" type="number" name="quantity" value="'.$quantity.'" min="0">
-								<input class="modify-button" type="submit" name="modify" value="Modifier">
+							<form method="post">
+								<input class="modify" type="submit" name="modify" value="Remove from cart">
 							</form>
 							</figure>';
 		
@@ -77,10 +73,23 @@
 				echo "Erreur";
 				echo '$e';
 			}
-			$conn = null;
+			// $conn = null;
 		}
-
+		if (isset($_POST["modify"])) {
+			if ($_SESSION["cart"][$id] > 1){
+				$_SESSION["cart"][$id] = $_SESSION["cart"][$id] - 1 ;
+			} else {
+				unset($_SESSION["cart"][$id]);
+			}
+	
+			header("Location: panier.php"); // to refresh
+		}
 	?>
+
+		<!-- remove artcile from cart NE FONCTIONE PAS ENCORE -->
+		<?php	
+
+		?>
 
 	<div class="title" id="title-cart">
 		<h2>Search any product to add to your cart:</h2>
@@ -99,23 +108,12 @@
 				<div id="prod_columns" class="prod_col"> 
 
 		<?php
-			include "connexion_bdd.php";
 			include "search_results.php";
 		?>
 		</div>
 	
 
-	<!-- remove artcile from cart NE FONCTIONE PAS ENCORE -->
-	<?php	
-		// if (isset($_POST["remove"])) {
-		// 	for ($i = 0; $i < count($_SESSION["cart"]); $i++)  {
-		// 		if ($_SESSION["cart"][$i] == $id){
-		// 			unset($_SESSION["cart"][$i]);
-		// 		}
-				
-		// 	}
-		// }
-		?>
+
 
 	
 </div>

@@ -14,6 +14,7 @@
 				background-color: #F5F5F5;
 				margin: 0;
 				padding: 0;
+				z-index: 0; 
 			}
 
 			.top-right {

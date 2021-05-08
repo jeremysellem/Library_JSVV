@@ -120,6 +120,8 @@
 					<a href="panier.php" target="Main" class="logo">
 							<img src="../images/panier.png" width="70" height="50">
 							<h1>Cart</h1>
+					</a>
+					</li>
 					<li class="item">
 						<a href="account.php" target="Main" class="logo">
 							<img src="../images/user.png" width="40" height="40">
