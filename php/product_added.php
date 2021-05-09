@@ -30,7 +30,7 @@
 					$check = getimagesize($_FILES["image"]["tmp_name"]);
 					if($check) {
 						// Prepare statement
-						$sql = "INSERT INTO Livres(Titre, Auteur, Date_parution, ISBN, Prix, Edition, Stock, Resume, Categorie, Lien_image) VALUES (\"".$_POST['title']."\",\"".$_POST['author']."\",".$_POST['year'].",\"".$_POST['ISBN']."\",".$_POST['price'].",\"".$_POST['edition']."\",".$_POST['stock'].",\"".$_POST['story']."\",\"".$_POST['category']."\",\"".$target_file."\");";
+						$sql = "INSERT INTO Livres(Titre, Auteur, Date_parution, ISBN, Prix, Edition, Stock, Resume, Categorie, Lien_image, Type) VALUES (\"".$_POST['title']."\",\"".$_POST['author']."\",".$_POST['year'].",\"".$_POST['ISBN']."\",".$_POST['price'].",\"".$_POST['edition']."\",".$_POST['stock'].",\"".$_POST['story']."\",\"".$_POST['category']."\",\"".$_POST['type']."\",\"".$target_file."\");";
 						// Execute query
 						$result = $conn->query($sql);
 

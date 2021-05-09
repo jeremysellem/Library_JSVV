@@ -44,8 +44,8 @@
 							$prix = $result["Prix"];
 							$image = $result["Lien_image"];
 							$type = $result["Categorie"];
-						}
-						else {
+
+						}else {
 							echo "Page introuvable";
 							exit();
 						}

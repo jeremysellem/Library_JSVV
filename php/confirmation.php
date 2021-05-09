@@ -72,21 +72,30 @@ include "connexion_bdd.php";
 				echo '<div class="recap" id="recap-price">
 				<a>Reduction: 15% <br> Total to pay: '.$total.' euro</a>
 				</div>';
+				echo '<br>';
+
 
 			} elseif(isset($_SESSION["IS_ADMIN"]) && $_SESSION["IS_ADMIN"] == false) {
 				$total = $total * 0.90;
 				echo '<div class="recap" id="recap-price">
 				<a>Reduction: 10% <br> Total to pay: '.$total.' euro</a>
 				</div>';
+				echo '<br>';
 			} elseif(!isset($_SESSION["IS_ADMIN"])) {
 				echo '<div class="recap" id="recap-price">
 				<a>Total to pay: '.$total.' euro</a>
 				</div>';
+				echo '<br>';
 			}
-
-
-
+			if (!empty($_SESSION["cart"])){
+				echo '<div class="title" id="title-cart">
+				<a>You can withdraw your orders at our shop at 02 Avenue Achille Peretti, 92200 Neuilly-sur-Seine. We are open from Monday to Saturday, from 10am to 5pm.<a>
+			</div>';
+			echo '<br>';
+			}
          ?> 
+
+
 		 
 		 <div class="container">
 			<a href="panier.php" target="Main">

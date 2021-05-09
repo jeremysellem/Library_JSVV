@@ -16,7 +16,7 @@
             (Categorie like '%".$research."%')" ;
             $result = $conn->query($sql);
 
-            if($result->rowCount() > 0) {
+            if($result->rowCount() > 0 ) {
                 echo '<h3>Results : "'.$research.'"</h3>';
                 echo '<div class="container-bloc" id="results">';
                 foreach ($result as $row) {
@@ -28,6 +28,7 @@
                                 <a class="prod_button" href="article.php?id='.$row["Livre_ID"].' "> Description</a>
                                 </figure>';
                 }
+
                 echo "</div>";
             }
             else {

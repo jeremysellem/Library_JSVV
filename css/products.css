@@ -45,7 +45,7 @@ body {
 
 #prod_wrap{
 	display: flex;
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 	width: 90%;
 	max-width: 1100px;
 	margin: 50px auto;
@@ -70,6 +70,8 @@ div#prod_columns figure {
 	border: 2px solid #FAFAFA;
 	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
 	margin: 0px 5px ;
+  margin-top : 5px;
+  margin-bottom: 5px;
 	-webkit-column-break-inside: avoid;
 	-moz-column-break-inside: avoid;
 	/* column-break-inside: avoid; */

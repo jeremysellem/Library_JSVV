@@ -105,7 +105,7 @@
 						</a>
 						<ul class="dropdown-content" >
 							<li><a href="books.php" target="Main">Books</a></li>
-							<li><a href="products.php" target="Main">Stationery</a></li>
+							<li><a href="stationery.php" target="Main">Stationery</a></li>
 						</ul>
 					</li>
 					<li class="item">

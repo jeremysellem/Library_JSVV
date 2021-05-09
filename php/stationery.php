@@ -1,30 +1,27 @@
-<?php
-	session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<title>Products</title>
 		<link rel="stylesheet" href="../css/products.css" />
-	</head>
 		<body>
-			<!-- Banner -->
-			<div id='prod_banner'>
+			
+			<div id='prod_banner_product'>
 			</div>
 
-			<!-- Content -->
-			<div id="prod_wrap"> 
-				<div id="prod_columns" class="prod_col">
+				<div id="prod_wrap"> 
+				<div id="prod_columns" class="prod_col"> 
+
+	
+	
 				<?php
 					include "connexion_bdd.php";
 					
 					try {
-						$sql = "SELECT * FROM Library_JSVV.Livres WHERE Type = 'Livre' ";
+						$sql = "SELECT * FROM Library_JSVV.Livres WHERE Type = 'Autre' ";
 						$result = $conn->query($sql);
 						$num_rows = $result->fetchColumn();
-						$result->execute(); /* because fetch is a PDOStatement cursor */
+						$result->execute(); 
 						if ($num_rows > 0) {
 							
 							foreach ($result as $row) {
@@ -46,9 +43,12 @@
 						echo "0 result".$e;
 					}
 
-					$conn = null;
 				?>
+	
+
 			</div>
 		</div>
 	</body>
+</head>
+
 </html> 

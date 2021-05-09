@@ -42,3 +42,23 @@ Product: Le joueur d'échecs by Stefan Zweig
 Prix:4
 Quantité: 1
 
+Product: Le Cid by Pierre Corneille
+Prix:6
+Quantité: 1
+
+Product: Post-it by -- 
+Prix:5
+Quantité: 3
+
+Product: Le Cid by Pierre Corneille
+Prix:6
+Quantité: 1
+
+Product: Règle by --
+Prix:7
+Quantité: 1
+
+Product: Belle du Seigneur by Albert Cohen
+Prix:12
+Quantité: 1
+

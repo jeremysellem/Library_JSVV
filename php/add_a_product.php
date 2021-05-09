@@ -72,6 +72,11 @@
 						    <option value="French_literature">French literature</option>
 						    <option value="Poetry">Poetry</option>
 						</select>
+						<label for="category">Type</label>
+						<select class="form-group" name="type" id="type" required>
+						    <option value="Livre">Livre</option>
+						    <option value="Autre">Autre</option>
+						</select>
 					</div>
 					<div class="form-group">
 						<label for="image">Image</label>
