@@ -28,6 +28,12 @@ include "connexion_bdd.php";
 		<?php
 			
 			if(isset($_POST["confirm"]) ){
+				if(empty($_SESSION["cart"])){
+					echo '<div class="recap" id="recap-price">
+							<a style="margin-left:20px;">Your cart is empty</a>
+						</div>';
+				echo '<br>';
+				}
 				$cart = $_SESSION["cart"];
 				$total = 0;
 				echo '<div id="prod_wrap"> 
@@ -70,7 +76,7 @@ include "connexion_bdd.php";
 			if(isset($_SESSION["IS_ADMIN"]) && $_SESSION["IS_ADMIN"] == true) {
 				$total = $total * 0.85;
 				echo '<div class="recap" id="recap-price">
-				<a>Reduction: 15% <br> Total to pay: '.$total.' euro</a>
+				<a style="margin-left:20px;">Reduction: 15% <br>   Total to pay: '.$total.' euro</a>
 				</div>';
 				echo '<br>';
 
@@ -78,18 +84,18 @@ include "connexion_bdd.php";
 			} elseif(isset($_SESSION["IS_ADMIN"]) && $_SESSION["IS_ADMIN"] == false) {
 				$total = $total * 0.90;
 				echo '<div class="recap" id="recap-price">
-				<a>Reduction: 10% <br> Total to pay: '.$total.' euro</a>
+				<a style="margin-left:20px;">Reduction: 10% <br> Total to pay: '.$total.' euro</a>
 				</div>';
 				echo '<br>';
 			} elseif(!isset($_SESSION["IS_ADMIN"])) {
 				echo '<div class="recap" id="recap-price">
-				<a>Total to pay: '.$total.' euro</a>
+				<a style="margin-left:20px;">Total to pay: '.$total.' euro</a>
 				</div>';
 				echo '<br>';
 			}
 			if (!empty($_SESSION["cart"])){
 				echo '<div class="title" id="title-cart">
-				<a>You can withdraw your orders at our shop at 02 Avenue Achille Peretti, 92200 Neuilly-sur-Seine. We are open from Monday to Saturday, from 10am to 5pm.<a>
+				<a style="margin-left:20px;">You can withdraw your orders at our shop at 02 Avenue Achille Peretti, 92200 Neuilly-sur-Seine. We are open from Monday to Saturday, from 10am to 5pm.<a>
 			</div>';
 			echo '<br>';
 			}

@@ -97,7 +97,7 @@
 
 		echo '<div class = "confirm-order" >
 					<form method="post" action="confirmation.php?cart='.$_SESSION["cart"].'">
-						<input style="margin-left:1400px; margin-top:50px"  class="research-button" type="submit" name="confirm" value="Confirm order">
+						<input style="margin-left:10px; margin-top:50px"  class="research-button" type="submit" name="confirm" value="Confirm order">
 					</form>
 				</div>';
 
