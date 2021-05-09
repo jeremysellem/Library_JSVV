@@ -134,7 +134,7 @@
 	    </header>
 
 	    <!-- Main content -->
-		<iframe style="width: 100%; min-height: 700px;" id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+30)+'px';" scrolling="no" ></iframe>
+		<iframe style="width: 100%; min-height: 700px;" id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
 
 		<!-- Footer: non-essential information -->
 		<footer>
