@@ -154,3 +154,19 @@ h2 {
 	color: #1E1E1E;
 	margin-left: 20px; /* Pour que le nom ne soit pas collé au logo */
 }
+
+
+/*confirmation*/
+
+.recap{
+  text-align: left;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  color: #1E1E1E;
+  /*color: #444;*/
+  line-height: 1.5;
+  height:60px;
+  font-weight:600;
+  text-overflow:ellipsis;
+
+}

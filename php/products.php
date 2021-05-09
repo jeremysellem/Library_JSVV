@@ -51,7 +51,6 @@
 			</div>
 		</div>
 	</body>
-
-	</head>
+</head>
 
 </html> 

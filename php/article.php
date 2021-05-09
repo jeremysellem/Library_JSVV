@@ -88,7 +88,16 @@
 				</div>
 				<?php
 					if (isset($_POST["addToCart"]) && $_POST["quantity"]>0 ) {
-						$_SESSION["cart"][$id] = $_POST["quantity"];
+						if ($result["Stock"] < $_POST["quantity"]){
+							echo '<script type="text/javascript">
+									alert("Sorry, we don\'t enough of this product. Please try adding less.");
+								</script>';
+						} else{
+							$_SESSION["cart"][$id] = $_POST["quantity"];
+							echo '<script type="text/javascript">
+									alert("Product successfully added!");
+								</script>';
+						}	
 					}
 				?>
 			</div>
