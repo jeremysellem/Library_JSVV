@@ -6,7 +6,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Main</title>
-		<link rel="stylesheet" href="../css/home.css" />
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 		<style type="text/css">
@@ -14,7 +13,6 @@
 				background-color: #F5F5F5;
 				margin: 0;
 				padding: 0;
-				z-index: 0; 
 			}
 
 			.top-right {
@@ -22,6 +20,7 @@
 				top: 8px;
 				right: 25px;
 				text-align: center;
+
 			}
 
 			p {

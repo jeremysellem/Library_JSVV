@@ -86,7 +86,6 @@
 		<!-- Top of the page -->
 		<header>
 			<!-- Navigation bar: links to relevant sections -->
-			<!-- TODO quand on rétrécit la page de droit à gauche le menu est moche et se met sur deux lignes)-->
 			<nav>
 				<ul class="navbar">
 					<li class="item">
@@ -100,15 +99,13 @@
 							<h1>Home</h1>
 						</a>
 					</li>
-					<!-- <nav> -->
-			    	<li class="item">
-						<a class="dropbtn"  href="products.php" target="Main">
+			    	<li class="item dropdown">
+						<a href="products.php" target="Main">
 							<h1>Products</h1>
 						</a>
-						<ul class="dropdown-content">
+						<ul class="dropdown-content" >
 							<li><a href="books.php" target="Main">Books</a></li>
 							<li><a href="products.php" target="Main">Stationery</a></li>
-							
 						</ul>
 					</li>
 					<li class="item">
@@ -117,10 +114,10 @@
 						</a>
 					</li>
 					<li class="item">
-					<a href="panier.php" target="Main" class="logo">
+						<a href="panier.php" target="Main" class="logo">
 							<img src="../images/panier.png" width="70" height="50">
 							<h1>Cart</h1>
-					</a>
+						</a>
 					</li>
 					<li class="item">
 						<a href="account.php" target="Main" class="logo">
@@ -137,7 +134,7 @@
 	    </header>
 
 	    <!-- Main content -->
-		<iframe style="width: 100%; min-height: 700px; 	z-index: 0; " id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" scrolling="no" ></iframe>
+		<iframe style="width: 100%; min-height: 700px;" id="Main" name="Main" src="main.php" frameBorder="0" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+30)+'px';" scrolling="no" ></iframe>
 
 		<!-- Footer: non-essential information -->
 		<footer>

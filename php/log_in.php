@@ -18,7 +18,6 @@
 			.medium-password{background-color: #E4DB11;border:#BBB418 1px solid;}
 			.weak-password{background-color: #FF6600;border:#AA4502 1px solid;}
 			.strong-password{background-color: #12CC1A;border:#0FA015 1px solid;}
-
 			form {
 				max-width: 900px;
 				display: block;
@@ -93,7 +92,7 @@
 					</div>
 				</div>
 				<div>
-					<input type="submit" class="btn btn-primary" value="Submit"  href="search.php">
+					<input type="submit" class="btn btn-primary" value="Submit">
 				</div>
 			</form>
 		</div>

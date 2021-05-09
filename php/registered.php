@@ -29,3 +29,17 @@
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Registered</title>
+		<meta http-equiv="refresh" content="0; URL=logged.php" />
+	</head>
+	<body>
+	</body>
+</html>
+
+		
+
+

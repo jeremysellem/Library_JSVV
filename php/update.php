@@ -20,11 +20,17 @@
 			<!-- Test whether you are connected -->
 			<?php if(isset($_SESSION["CUSTOMER_ID"]) && $_SESSION["CUSTOMER_ID"] > 0) : ?>
 
+				<!-- Archives Banner -->
+        		<img src="../images/classeurs.jpg" width="100%" height="100%">
+
 				<!-- Test whether you are an administrator -->
 				<?php if(isset($_SESSION["IS_ADMIN"]) && $_SESSION["IS_ADMIN"] == true) : ?>
 
 					<!-- OK you have access to the user management table -->
 					<iframe id="User_data_table" name="User_data_table" src="user_management_table.php" style="width: 100%;" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" frameBorder="0" scrolling="no" ></iframe>
+
+					<!-- OK you have access to the product management table -->
+					<iframe id="Product_data_table" name="Product_data_table" src="product_management_table.php" style="width: 100%;" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" frameBorder="0" scrolling="no" ></iframe>
 				
 				<!-- KO you are not an admin, you have no access to this section -->
 				<?php  else: ?>

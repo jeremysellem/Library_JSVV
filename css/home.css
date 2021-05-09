@@ -31,8 +31,6 @@ a h2 {
 
 nav {
 	margin: 0;
-	overflow: hidden;
-	z-index: 999999; 
 }
 
 .navbar {
@@ -40,7 +38,9 @@ nav {
 	padding: 0;
 	display: flex;
 	height: 80px;
-	z-index: 999999; 
+	position: sticky;
+	top: 0%;
+	background-color: #F5F5F5;
 }
 
 .navbar > .active > a > h1 {
@@ -51,7 +51,7 @@ nav {
 	-webkit-filter: opacity(0.33) drop-shadow(0 0 0 CornflowerBlue);
 }
 
-.item{
+.item {
 	display: inline-block;
 	list-style-type: none;
 }
@@ -76,35 +76,40 @@ nav {
 	text-underline-offset: 10px;
 }
 
-/* drop down menu  */
+/* Drop down menu  */
 
 .dropdown-content {
 	display: none;
 	position: absolute;
-	width: 100%;
-	z-index: 999999; 
-}
-
-nav > ul li:hover .dropdown-content {
-	display: block; 
-	
-}
-
-.a .dropbtn:hover {
-	display: inline-block;
+	background-color: #F5F5F5;
+	z-index: 1;
+	text-align: center;
 	width: 100%;
 }
-.dropdown-content li{
-	list-style-type: none;
+
+.dropdown-content ul,
+.dropdown-content li {
 	font-family: 'Poppins', sans-serif;
-	font-size: 26px;
-	color: #F5F5F5;
+	font-size: 24px;
+	list-style-type: none;
 }
+
 .dropdown-content a {
-	border: none;
+	text-align: center;
 	color: black;
-	background-color: inherit;
-	transition: background-color 0.2s linear;
+	text-decoration: none;
+	padding: 0;
+	margin-left: -11%;
+}
+
+.dropdown-content a:hover {
+	text-decoration: underline;
+	color: #7D8B96;
+	text-underline-offset: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
 }
 
 /* update.php */

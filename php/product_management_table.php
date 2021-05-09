@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>User Management Data Table</title>
+        <title>Product Management Data Table</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -136,11 +136,11 @@
             }
         </style>
     </head>
-    <body>
+    <body>        
         <!-- If the admin executed a deletion -->
         <?php
             // Check if your are a connected Admin and the argument DELETE is set
-            if(isset($_GET["DELETE_USER"]) && $_GET["DELETE_USER"] > 0)  {
+            if(isset($_GET["DELETE_PRODUCT"]) && $_GET["DELETE_PRODUCT"] > 0)  {
                 if(isset($_SESSION["IS_ADMIN"]) && $_SESSION["IS_ADMIN"] == true) {
                     if(isset($_SESSION["CUSTOMER_ID"]) && $_SESSION["CUSTOMER_ID"] > 0) {
 
@@ -149,8 +149,8 @@
                             // Initiate connection to DB
                             include "connexion_bdd.php";
 
-                            // Prepare statement to delete user
-                            $sql = "DELETE FROM USERS WHERE CUS_ID=" . $_GET["DELETE_USER"] . ";";
+                            // Prepare statement to delete a product
+                            $sql = "DELETE FROM Livres WHERE Livre_ID=" . $_GET["DELETE_PRODUCT"] . ";";
                             
                             // Execute query
                             $result = $conn->query($sql);
@@ -159,7 +159,7 @@
                             }
                             else {
                                 // For instance if someone has deleted it juste before I do
-                                echo "<h3>An error occurred while deleting a user</h3>";
+                                echo "<h3>An error occurred while deleting a product</h3>";
                             }
                         }
                         catch (Exception $e) {
@@ -173,41 +173,41 @@
         ?>
 
 
-        <!-- User data mangement table -->
+        <!-- Product data mangement table -->
         <div class="container-xl">
             <div class="table-responsive">
                 <div class="table-wrapper">
                     <div class="table-title">
-                        <h2>User Management</h2>
+                        <h2>Product Management</h2>
                     </div>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th style="width: 6%;">ID</th>
-                                <th style="width: 27%;">Name</th>
-                                <th style="width: 27%;">Email address</th>
-                                <th style="width: 17%;">Date Created</th>
-                                <th style="width: 12%;">Role</th>
+                                <th style="width: 27%;">Title</th>
+                                <th style="width: 27%;">Author</th>
+                                <th style="width: 17%;">Release year</th>
+                                <th style="width: 12%;">ISBN</th>
                                 <th style="width: 11%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $users = null;
+                                $products = null;
 
                                 try {
 
                                     // Initiate connection to DB
                                     include "connexion_bdd.php";
 
-                                    // Prepare statement to get all users
-                                    $sql = "SELECT CUS_ID, CUS_FIRST_NAME, CUS_LAST_NAME, CUS_EMAIL, CUS_JOINDATE, CUS_TYPE FROM USERS;";
+                                    // Prepare statement to get all products
+                                    $sql = "SELECT * FROM Livres;";
                                     
                                     // Execute query
-                                    $users = $conn->query($sql);
+                                    $products = $conn->query($sql);
 
-                                    // Prepare statement to get the amount of users
-                                    $sql = "SELECT COUNT(*) AS c FROM USERS;";
+                                    // Prepare statement to get the amount of products
+                                    $sql = "SELECT COUNT(*) AS c FROM Livres;";
                                     
                                     // Execute query
                                     $count = $conn->query($sql)->fetch();
@@ -220,16 +220,16 @@
                                 $conn = null;
 
                                 // Run results
-                                foreach ($users as $row) : ?>
+                                foreach ($products as $row) : ?>
 
                                     <tr style="width: 100%;">
-                                        <td><?php echo $row["CUS_ID"]; ?></td>
-                                        <td><img src="../images/user.png" class="avatar" alt="Avatar"> <?php echo $row["CUS_FIRST_NAME"] . " " . $row["CUS_LAST_NAME"]; ?></td>
-                                        <td><?php echo $row["CUS_EMAIL"]; ?></td>
-                                        <td><?php echo substr($row["CUS_JOINDATE"], 0, 10); ?></td>
-                                        <td><?php echo $row["CUS_TYPE"]; ?></td>
+                                        <td><?php echo $row["Livre_ID"]; ?></td>
+                                        <td><img src="../images/book.png" class="avatar" alt="Book Icon"> <?php echo $row["Titre"]; ?></td>
+                                        <td><?php echo $row["Auteur"]; ?></td>
+                                        <td><?php echo substr($row["Date_parution"], 0, 10); ?></td>
+                                        <td><?php echo $row["ISBN"]; ?></td>
                                         <td>
-                                            <a href="#" onclick="delete_user_dialog('<?php echo $row["CUS_ID"];?>', '<?php echo $row["CUS_TYPE"];?>');" class="delete" title="" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons"></i></a>
+                                            <a href="#" onclick="delete_product_dialog('<?php echo $row["Livre_ID"];?>');" class="delete" title="" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons"></i></a>
                                         </td>
                                     </tr>
 
@@ -249,21 +249,22 @@
                 </div>
             </div>
         </div>
+        <div style="text-align: center;">
+            <a href="add_a_product.php" target="Main">
+                <button class="btn btn-primary">Add a product</button>
+            </a>
+        </div>
 
-        <!-- Delete user dialog box -->
+        <!-- Delete product dialog box -->
         <script type="text/javascript">
-            function delete_user_dialog(CUS_ID, CUS_TYPE) {
-                if(CUS_TYPE == "ADMIN") {
-                    bootbox.alert("You can't delete an Admin user");
-                }
-                else {
-                    bootbox.confirm("Are you sure you want to delete this user (CUS_ID = " + CUS_ID + ") ?", function(result) {
-                        if(result) {
-                            window.location.replace("user_management_table.php?DELETE_USER="+CUS_ID);
-                        }
-                    });
-                }
-            };
+            function delete_product_dialog(Livre_ID) {
+                bootbox.confirm("Are you sure you want to delete this product (Livre_ID = " + Livre_ID + ") ?", function(result) {
+                    if(result) {
+                        window.location.replace("product_management_table.php?DELETE_PRODUCT="+Livre_ID);
+                    }
+                });
+            }
         </script>
     </body>
 </html>
+
