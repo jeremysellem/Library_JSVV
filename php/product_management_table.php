@@ -149,13 +149,26 @@
                             // Initiate connection to DB
                             include "connexion_bdd.php";
 
-                            // Prepare statement to delete a product
+                            // Get photo as path
+							$sql_phot_path = "SELECT Lien_image FROM Livres WHERE Livre_ID=" . $_GET["DELETE_PRODUCT"] . ";";
+							$result = $conn->query($sql_phot_path);
+							$book = $result->fetch();
+
+                            // Delete the product
                             $sql = "DELETE FROM Livres WHERE Livre_ID=" . $_GET["DELETE_PRODUCT"] . ";";
                             
                             // Execute query
                             $result = $conn->query($sql);
+
                             if($result) {
-                                echo "<h2>Successful deletion</h2>";
+
+                            	// Delete photo 
+                           		if (!unlink($book["Lien_image"])) { 
+								    echo "<h2>Image could not be deleted due to an error</h2>"; 
+								} 
+								else { 
+								    echo "<h2>Successful deletion</h2>"; 
+								}
                             }
                             else {
                                 // For instance if someone has deleted it juste before I do

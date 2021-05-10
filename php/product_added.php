@@ -14,33 +14,28 @@
 
 			$ok = true;
 			try {
+				if(($_FILES['image']["type"] == "image/gif") || ($_FILES['image']["type"] == "image/jpeg") || ($_FILES['image']["type"] == "image/jpg") || ($_FILES['image']["type"] == "image/png")) {
 
-				$target_dir = "uploads/";
-				$uploaded_file = $target_dir . basename($_FILES["image"]["name"]);
-				$imageFileType = strtolower(pathinfo($uploaded_file,PATHINFO_EXTENSION));
+					// Format file name
+					$imageFileType = strtolower(pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION));
+					$uploadfile = "../images/" . str_replace(" ", "_", $_POST['title']).".".$imageFileType;
 
-				$target_file = "../images/" . str_replace(" ", "_", $_POST['title']).".".$imageFileType;
+					// Prepare statement
+						$sql = "INSERT INTO Livres(Titre, Auteur, Date_parution, ISBN, Prix, Edition, Stock, Resume, Categorie, Lien_image, Type) VALUES (\"".$_POST['title']."\",\"".$_POST['author']."\",".$_POST['year'].",\"".$_POST['ISBN']."\",".$_POST['price'].",\"".$_POST['edition']."\",".$_POST['stock'].",\"".$_POST['story']."\",\"".$_POST['category']."\",\"".$uploadfile."\",\"".$_POST['type']."\");";
+					// Execute query
+					$result = $conn->query($sql);
 
-				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-					echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-					$ok = false;
+					// Save product image
+					if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+						echo "File is valid, and was successfully uploaded.\n";
+					} else {
+					 	echo "This image already exists";
+					 	$ok = false;
+					}
 				}
 				else {
-					// Check if image file is a actual image or fake image
-					$check = getimagesize($_FILES["image"]["tmp_name"]);
-					if($check) {
-						// Prepare statement
-						$sql = "INSERT INTO Livres(Titre, Auteur, Date_parution, ISBN, Prix, Edition, Stock, Resume, Categorie, Lien_image, Type) VALUES (\"".$_POST['title']."\",\"".$_POST['author']."\",".$_POST['year'].",\"".$_POST['ISBN']."\",".$_POST['price'].",\"".$_POST['edition']."\",".$_POST['stock'].",\"".$_POST['story']."\",\"".$_POST['category']."\",\"".$_POST['type']."\",\"".$target_file."\");";
-						// Execute query
-						$result = $conn->query($sql);
-
-						if(!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-						    $ok = false;
-						}
-					}
-					else {
-						$ok = false;
-					}
+					echo "This file is not a picture (format supported GIF, JPEG, JPG, PNG)";
+					$ok = false;
 				}
 			}
 			catch (Exception $e) {
